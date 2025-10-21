@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - '5500:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dev-student-api
+
+volumes:
+  postgres_data:
+
+networks:
+  dev-student-api:
